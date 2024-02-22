@@ -4,9 +4,10 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
-data = pd.read_csv("linear_regression/ffr.csv")
-x = data["Calendar"].values
-y = data["Fedfunds"].values
+data = pd.read_csv("linear_regression/pricesNHouses.csv")
+x = data["lumber"].values
+y = data["houses"].values
+
 
 # Create your training and testing datasets:
 xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = .2)
@@ -41,8 +42,8 @@ predict = np.around(predict, 2)
 # Test the model by looping through all of the values in the xtest dataset
 print("\nTesting Linear Model with Testing Data:")
 
-for index in range(len(xtest)):
-    actual = ytest[index] # gets the actual y value from the ytest dataset
+for index in range(len(xtest) - 1):
+    actual = ytest[index + 1] # gets the actual y value from the ytest dataset
     predicted_y = predict[index] # gets the predicted y value from the predict variable
     x_coord = xtest[index] # gets the x value from the xtest dataset
     print("x value:", float(x_coord), "Predicted y value:", predicted_y, "Actual y value:", actual)
@@ -59,9 +60,9 @@ plt.scatter(xtest, ytest, c="blue", label="Testing Data")
 
 plt.scatter(xtest, predict, c="red", label="Predictions")
 
-plt.xlabel("Age")
-plt.ylabel("Blood Pressure")
-plt.title("Blood Pressure by Age")
+plt.xlabel("Lumber")
+plt.ylabel("Houses Sold")
+plt.title("Houses Sold Based on Lumber Prices")
 plt.plot(x, coef*x + intercept, c="r", label="Line of Best Fit")
 
 plt.legend()
