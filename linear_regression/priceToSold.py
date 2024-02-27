@@ -1,12 +1,16 @@
 import pandas as pd
 import numpy as np
+import pprint
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
-data = pd.read_csv("linear_regression/pricesNHouses.csv")
-x = data["lumber"].values
-y = data["houses"].values
+data = pd.read_csv("linear_regression/datesFfrHousesPrices.csv")
+x = data["lumberPrice"].values
+y = data["housesSold"].values
+
+pprint.pprint(data)
+data["dates"] = pd.to_datetime(data["dates"])
 
 
 # Create your training and testing datasets:
@@ -42,8 +46,8 @@ predict = np.around(predict, 2)
 # Test the model by looping through all of the values in the xtest dataset
 print("\nTesting Linear Model with Testing Data:")
 
-for index in range(len(xtest) - 1):
-    actual = ytest[index + 1] # gets the actual y value from the ytest dataset
+for index in range(len(xtest)):
+    actual = ytest[index] # gets the actual y value from the ytest dataset
     predicted_y = predict[index] # gets the predicted y value from the predict variable
     x_coord = xtest[index] # gets the x value from the xtest dataset
     print("x value:", float(x_coord), "Predicted y value:", predicted_y, "Actual y value:", actual)
