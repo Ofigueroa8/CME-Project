@@ -6,8 +6,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
 data = pd.read_csv("linear_regression/datesFfrHousesPrices.csv")
-x = data["lumberPrice"].values
-y = data["housesSold"].values
+x = data[["housesSold","fedfunds"]]
+y = data["lumberPrice"]
+
+print(x)
 
 pprint.pprint(data)
 data["dates"] = pd.to_datetime(data["dates"])
@@ -16,15 +18,14 @@ data["dates"] = pd.to_datetime(data["dates"])
 # Create your training and testing datasets:
 xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = .2)
 
-# Use reshape to turn the x values into 2D arrays:
-xtrain = xtrain.reshape(-1,1)
 
 # Create the model
 model = LinearRegression().fit(xtrain, ytrain)
 
 # Find the coefficient, bias, and r squared values. 
 # Each should be a float and rounded to two decimal places. 
-coef = round(float(model.coef_), 2)
+print(model.coef_)
+coef = np.round(float(model.coef_), 2)
 intercept = round(float(model.intercept_), 2)
 r_squared = model.score(xtrain, ytrain)
 
