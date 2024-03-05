@@ -51,11 +51,12 @@ print(type(xtest))
 print(xtest)
 
 
-# for index in range(len(xtest)):
-#     actual = ytest[index] # gets the actual y value from the ytest dataset
-    # predicted_y = predict[index] # gets the predicted y value from the predict variable
-    # x_coord = xtest[index] # gets the x value from the xtest dataset
-#     print(f"Houses Sold: {x_coord[0]} Fedfunds Rate: {x_coord[1]} Actual: {actual} Predicted: {predicted_y}")
+for i in range(len(xtest)):
+    actual = ytest.index[i] # gets the actual y value from the ytest dataset
+    predicted_y = predict[i] # gets the predicted y value from the predict variable
+    x_coord = xtest.loc[xtest.index[i]] # gets the x value from the xtest dataset
+    lis = x_coord.tolist() # a new variable making x_coord a list
+    print(f"Houses Sold: {lis[0]} Fedfunds Rate: {lis[1]} Actual: {actual} Predicted: {predicted_y}")
     
 
 
