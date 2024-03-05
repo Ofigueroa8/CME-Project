@@ -4,13 +4,20 @@ import pprint
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
-data = pd.read_csv("linear_regression/datesFfrHousesPrices.csv")
-x = data[["housesSold","fedfunds"]]
+print("Start")
+
+data = pd.read_csv("linear_regression/datesFfrHousesPricesUnits.csv")
+x = data[["housesSold (Thousands)","fedfunds"]]
 y = data["lumberPrice"]
 
+# Scales the data
+scaler = StandardScaler().fit(x)
+
+
 pprint.pprint(data)
-data["dates"] = pd.to_datetime(data["dates"])
+data["date"] = pd.to_datetime(data["date"])
 
 
 # Create your training and testing datasets:
@@ -45,18 +52,18 @@ print(predict)
 print("\nTesting Linear Model with Testing Data:")
 
 
-print(type(ytest))
-print(ytest)
-print(type(xtest))
-print(xtest)
+# print(type(ytest))
+# print(ytest)
+# print(type(xtest))
+# print(xtest)
 
 
-# for index in range(len(xtest)):
-#     actual = ytest[index] # gets the actual y value from the ytest dataset
-    # predicted_y = predict[index] # gets the predicted y value from the predict variable
-    # x_coord = xtest[index] # gets the x value from the xtest dataset
-#     print(f"Houses Sold: {x_coord[0]} Fedfunds Rate: {x_coord[1]} Actual: {actual} Predicted: {predicted_y}")
-    
+for i in range(len(xtest)):
+    actual = ytest.index[i] # gets the actual y value from the ytest dataset
+    predicted_y = predict[i] # gets the predicted y value from the predict variable
+    x_coord = xtest.loc[xtest.index[i]] # gets the x value from the xtest dataset
+    lis = x_coord.tolist() # a new variable making x_coord a list
+    print(f"Houses Sold: {lis[0]} Fedfunds Rate: {lis[1]} Actual: {actual} Predicted: {predicted_y}\n")
 
 
 # '''
