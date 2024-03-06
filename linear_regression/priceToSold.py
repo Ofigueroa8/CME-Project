@@ -6,14 +6,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-print("Start")
 
-data = pd.read_csv("linear_regression/datesFfrHousesPricesUnits.csv")
-x = data[["housesSold (Thousands)","fedfunds"]]
+data = pd.read_csv("linear_regression/datesFfrUnitsPrices.csv")
+x = data[["unitsStarted (Thousands)","fedfunds"]]
 y = data["lumberPrice"]
-
-# Scales the data
-scaler = StandardScaler().fit(x)
 
 
 pprint.pprint(data)
@@ -29,7 +25,6 @@ model = LinearRegression().fit(xtrain, ytrain)
 
 # Find the coefficient, bias, and r squared values. 
 # Each should be a float and rounded to two decimal places. 
-print(model.coef_)
 coef = np.round(model.coef_, 2)
 intercept = round(float(model.intercept_), 2)
 r_squared = round(model.score(x, y),2)
