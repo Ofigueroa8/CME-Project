@@ -58,7 +58,7 @@ for i in range(len(xtest)):
     predicted_y = predict[i] # gets the predicted y value from the predict variable
     x_coord = xtest.loc[xtest.index[i]] # gets the x value from the xtest dataset
     lis = x_coord.tolist() # a new variable making x_coord a list
-    print(f"Houses Sold: {lis[0]} Fedfunds Rate: {lis[1]} Actual: {actual} Predicted: {predicted_y}")
+    print(f"House Units (Thousands) Starting To Be Built: {lis[0]} Fedfunds Rate: {lis[1]} Actual Price of Lumber: {actual} Predicted Price of Lumber: {predicted_y}")
 
 # '''
 # **********CREATE A VISUAL OF THE RESULTS**********
