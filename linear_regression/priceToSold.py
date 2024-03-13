@@ -71,6 +71,18 @@ while True:
     total = (coef[0] * unit) + (coef[1] * ffr) + intercept
     print(f"The predicted price of lumber for {unit} housing units and a Fed Funds Rate of {ffr} will be {total}")
 
+
+while True:
+    print("Type '-1' to stop")
+    unit = float(input("How many units will be started? "))
+    if unit == -1:
+        break
+    ffr = float(input("What is the selected Fed Funds Rate? "))
+    if ffr == -1:
+        break
+    total = (coef[0] * unit) + (coef[1] * ffr) + intercept
+    print(f"The predicted price of lumber for {unit} housing units and a Fed Funds Rate of {ffr} will be {total}")
+
 # '''
 # **********CREATE A VISUAL OF THE RESULTS**********
 # '''
