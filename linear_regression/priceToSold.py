@@ -58,7 +58,18 @@ for i in range(len(xtest)):
     predicted_y = predict[i] # gets the predicted y value from the predict variable
     x_coord = xtest.loc[xtest.index[i]] # gets the x value from the xtest dataset
     lis = x_coord.tolist() # a new variable making x_coord a list
-    print(f"Houses Sold: {lis[0]} Fedfunds Rate: {lis[1]} Actual: {actual} Predicted: {predicted_y}")
+    print(f"Units Started: {lis[0]} Fedfunds Rate: {lis[1]} Actual: {actual} Predicted: {predicted_y}")
+
+while True:
+    print("Type '-1' to stop")
+    unit = float(input("How many units will be started? "))
+    if unit == -1:
+        break
+    ffr = float(input("What is the selected Fed Funds Rate? "))
+    if ffr == -1:
+        break
+    total = (coef[0] * unit) + (coef[1] * ffr) + intercept
+    print(f"The predicted price of lumber for {unit} housing units and a Fed Funds Rate of {ffr} will be {total}")
 
 # '''
 # **********CREATE A VISUAL OF THE RESULTS**********
